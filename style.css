@@ -242,3 +242,16 @@ font-size:26px;
 text-shadow:2px 2px 6px black;
 
 }
+
+@keyframes titleBounce {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-15px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+#titleScreen h1 {
+    display: inline-block;
+    animation: titleBounce 2s ease-in-out infinite;
+}
