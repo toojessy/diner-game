@@ -2,112 +2,75 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
-<title>Who Ordered This?!</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Who Ordered This?!</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<div id="menuContainer">
+    <button id="menuToggle">☰ View Menu</button>
+
+    <div id="collapsibleMenu" class="hidden">
+        <h3>Diner Menu</h3>
+        <ul id="menuList">
+            <li>Burger</li>
+            <li>French Fries</li>
+            <li>Pancakes</li>
+            <li>Milkshake</li>
+            <li>Cherry Pie</li>
+            <li>Banana Split</li>
+            <li>Mozzarella Sticks</li>
+            <li>Omlette</li>
+            <li>Water</li>
+            <li>Sweet Tea</li>
+            <li>Chicken Tenders</li>
+            <li>Hashbrowns</li>
+            <li>Salad</li>
+        </ul>
+    </div>
+</div>
+
 <div id="titleScreen">
-
-<h1>Who Ordered This?!</h1>
-
-<button id="startBtn">Start Game</button>
-
+    <h1 id="gameTitle">Who Ordered This?!</h1>
+    <button id="startBtn">Start Game</button>
 </div>
 
 <div id="instructionScreen">
+    <h2>How To Play</h2>
 
-<h2>How To Play</h2>
+    <div class="instructionBox">
+        <p>Serve real customers.</p>
+        <p>Reject imposters.</p>
+        <p>If they order something not on the menu, reject them.</p>
+        <p>You only get <b>3 mistakes</b>.</p>
 
-<div class="instructionBox">
+        <p class="hintTitle">★ HINTS ★</p>
+        <p>Check character names carefully.</p>
+        <p>Some characters may look slightly off.</p>
+        <p>If they ask for something not on the diner menu, reject them.</p>
+    </div>
 
-<p>Serve real customers.</p>
-<p>Reject imposters.</p>
-<p>If they order something not on the menu, reject them.</p>
-<p>You only get <b>3 mistakes</b>.</p>
-
-</div>
-
-<button id="instructionBtn">Continue</button>
-
+    <button id="instructionBtn">Continue</button>
 </div>
 
 <div id="gameScreen">
 
-<div id="gameArea">
-<img id="customerImage">
-</div>
+    <div id="gameArea">
+        <img id="customerImage">
+    </div>
 
-<div id="characterName">Customer</div>
+    <div id="characterName">Customer</div>
 
-<div id="orderBubble">Order</div>
+    <div id="orderBubble">Order</div>
 
-<div id="gameButtons">
-<button id="serveBtn">Serve</button>
-<button id="rejectBtn">Reject</button>
-</div>
+    <div id="gameButtons">
+        <button id="serveBtn">Serve</button>
+        <button id="rejectBtn">Reject</button>
+    </div>
 
-<div id="streak">Score: 0 | Streak: 0 | Mistakes: 0/3</div>
-
-</div>
-
-<script src="script.js"></script>
-
-</body>
-</html><!DOCTYPE html>
-<html>
-
-<head>
-<meta charset="UTF-8">
-<title>Who Ordered This?!</title>
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<div id="titleScreen">
-
-<h1>Who Ordered This?!</h1>
-
-<button id="startBtn">Start Game</button>
-
-</div>
-
-<div id="instructionScreen">
-
-<h2>How To Play</h2>
-
-<div class="instructionBox">
-
-<p>Serve real customers.</p>
-<p>Reject imposters.</p>
-<p>If they order something not on the menu, reject them.</p>
-<p>You only get <b>3 mistakes</b>.</p>
-
-</div>
-
-<button id="instructionBtn">Continue</button>
-
-</div>
-
-<div id="gameScreen">
-
-<div id="gameArea">
-<img id="customerImage">
-</div>
-
-<div id="characterName">Customer</div>
-
-<div id="orderBubble">Order</div>
-
-<div id="gameButtons">
-<button id="serveBtn">Serve</button>
-<button id="rejectBtn">Reject</button>
-</div>
-
-<div id="streak">Score: 0 | Streak: 0 | Mistakes: 0/3</div>
+    <div id="streak">Score: 0 | Streak: 0 | Mistakes: 0/3</div>
 
 </div>
 
