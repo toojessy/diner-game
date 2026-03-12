@@ -63,10 +63,18 @@ window.onload = function () {
     ];
 
     const fakeOrders = [
-        "Spaghetti",
-        "Taco",
-        "Pizza"
-    ];
+    "Spaghetti",
+    "Taco",
+    "Pizza",
+    "Sushi",
+    "Ramen",
+    "Burrito",
+    "Nachos",
+    "Lasagna",
+    "Suspicious Soup",
+    "Mystery Meat Surprise",
+    "Phil Collins"
+];
 
     let score = 0;
     let streak = 0;
