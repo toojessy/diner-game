@@ -261,3 +261,36 @@ margin-bottom:4px;
 display:none !important;
 }
 
+#foodImage{
+
+position:absolute;
+
+bottom:60px;
+left:-300px;
+
+width:180px;
+
+display:none;
+
+pointer-events:none;
+
+}
+
+.serveFood{
+
+animation:serveFood 0.8s forwards;
+
+}
+
+@keyframes serveFood{
+
+0%{
+left:-300px;
+}
+
+100%{
+left:50%;
+transform:translateX(-50%);
+}
+
+}
