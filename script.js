@@ -115,6 +115,16 @@ window.onload = function () {
     let shiftCorrect = 0;
     const maxShifts = 5;
 
+    let exitBtnRef = exitBtn;
+    let customerImageRef = customerImage;
+    let foodImageRef = foodImage;
+    let characterNameRef = characterName;
+    let orderBubbleRef = orderBubble;
+    let gameButtonsRef = gameButtons;
+    let serveBtnRef = serveBtn;
+    let rejectBtnRef = rejectBtn;
+    let streakTextRef = streakText;
+
     function getShiftGoal(shiftNumber) {
         return shiftNumber * 10;
     }
@@ -132,10 +142,10 @@ window.onload = function () {
         currentShift = 1;
         shiftCorrect = 0;
 
-        orderBubble.style.display = "none";
-        gameButtons.style.display = "none";
-        foodImage.style.display = "none";
-        foodImage.classList.remove("serveFood");
+        orderBubbleRef.style.display = "none";
+        gameButtonsRef.style.display = "none";
+        foodImageRef.style.display = "none";
+        foodImageRef.classList.remove("serveFood");
 
         updateScore();
     }
@@ -146,7 +156,7 @@ window.onload = function () {
         gameScreen.style.display = "none";
         menuContainer.style.display = "none";
         collapsibleMenu.classList.add("hidden");
-        foodImage.style.display = "none";
+        foodImageRef.style.display = "none";
     }
 
     menuToggle.onclick = function () {
@@ -171,54 +181,12 @@ window.onload = function () {
         startRound();
     };
 
-    exitBtn.onclick = function () {
+    exitBtnRef.onclick = function () {
         showTitleScreen();
     };
 
-    serveBtn.onclick = function () {
-        const wrong = currentCustomerIsImposter || currentOrderIsFake;
-
-        if (wrong) {
-            streak = 0;
-            mistakes++;
-            updateScore();
-            serveFoodAnimation();
-        } else {
-            score++;
-            streak++;
-            shiftCorrect++;
-
-            if (streak > bestStreak) {
-                bestStreak = streak;
-            }
-
-            updateScore();
-            serveFoodAnimation();
-        }
-    };
-
-    rejectBtn.onclick = function () {
-        const wrong = !(currentCustomerIsImposter || currentOrderIsFake);
-
-        if (wrong) {
-            streak = 0;
-            mistakes++;
-        } else {
-            score++;
-            streak++;
-            shiftCorrect++;
-
-            if (streak > bestStreak) {
-                bestStreak = streak;
-            }
-        }
-
-        updateScore();
-        checkProgressAfterChoice();
-    };
-
     function updateScore() {
-        streakText.textContent =
+        streakTextRef.textContent =
             "Shift: " + currentShift + " (" + shiftCorrect + "/" + getShiftGoal(currentShift) + ")" +
             " | Score: " + score +
             " | Streak: " + streak +
@@ -230,10 +198,10 @@ window.onload = function () {
     }
 
     function startRound() {
-        orderBubble.style.display = "none";
-        gameButtons.style.display = "none";
-        foodImage.style.display = "none";
-        foodImage.classList.remove("serveFood");
+        orderBubbleRef.style.display = "none";
+        gameButtonsRef.style.display = "none";
+        foodImageRef.style.display = "none";
+        foodImageRef.classList.remove("serveFood");
 
         const roundType = Math.floor(Math.random() * 4);
 
@@ -263,19 +231,19 @@ window.onload = function () {
 
         currentOrderName = chosenOrder;
 
-        characterName.textContent = chosenCustomer.name;
+        characterNameRef.textContent = chosenCustomer.name;
 
-        customerImage.classList.remove("walkIn");
-        customerImage.src = "images/" + chosenCustomer.image;
+        customerImageRef.classList.remove("walkIn");
+        customerImageRef.src = chosenCustomer.image;
 
-        void customerImage.offsetWidth;
+        void customerImageRef.offsetWidth;
 
-        customerImage.classList.add("walkIn");
+        customerImageRef.classList.add("walkIn");
 
         setTimeout(function () {
-            orderBubble.textContent = "I'd like " + chosenOrder + ".";
-            orderBubble.style.display = "block";
-            gameButtons.style.display = "block";
+            orderBubbleRef.textContent = "I'd like " + chosenOrder + ".";
+            orderBubbleRef.style.display = "block";
+            gameButtonsRef.style.display = "block";
         }, 1600);
     }
 
@@ -287,15 +255,15 @@ window.onload = function () {
             return;
         }
 
-        foodImage.src = "images/" + imageFile;
-        foodImage.style.display = "block";
+        foodImageRef.src = imageFile;
+        foodImageRef.style.display = "block";
 
-        foodImage.classList.remove("serveFood");
-        void foodImage.offsetWidth;
-        foodImage.classList.add("serveFood");
+        foodImageRef.classList.remove("serveFood");
+        void foodImageRef.offsetWidth;
+        foodImageRef.classList.add("serveFood");
 
         setTimeout(function () {
-            foodImage.style.display = "none";
+            foodImageRef.style.display = "none";
             checkProgressAfterChoice();
         }, 900);
     }
@@ -320,10 +288,50 @@ window.onload = function () {
         }
     }
 
+    serveBtnRef.onclick = function () {
+        const wrong = currentCustomerIsImposter || currentOrderIsFake;
+
+        if (wrong) {
+            streak = 0;
+            mistakes++;
+        } else {
+            score++;
+            streak++;
+            shiftCorrect++;
+
+            if (streak > bestStreak) {
+                bestStreak = streak;
+            }
+        }
+
+        updateScore();
+        serveFoodAnimation();
+    };
+
+    rejectBtnRef.onclick = function () {
+        const wrong = !(currentCustomerIsImposter || currentOrderIsFake);
+
+        if (wrong) {
+            streak = 0;
+            mistakes++;
+        } else {
+            score++;
+            streak++;
+            shiftCorrect++;
+
+            if (streak > bestStreak) {
+                bestStreak = streak;
+            }
+        }
+
+        updateScore();
+        checkProgressAfterChoice();
+    };
+
     function showShiftScreen() {
-        gameButtons.style.display = "none";
-        orderBubble.style.display = "none";
-        foodImage.style.display = "none";
+        gameButtonsRef.style.display = "none";
+        orderBubbleRef.style.display = "none";
+        foodImageRef.style.display = "none";
 
         gameScreen.innerHTML = `
             <button id="exitBtn">Exit</button>
@@ -413,25 +421,15 @@ window.onload = function () {
     }
 
     function rebindGameElements() {
-        const newExitBtn = document.getElementById("exitBtn");
-        const newCustomerImage = document.getElementById("customerImage");
-        const newFoodImage = document.getElementById("foodImage");
-        const newCharacterName = document.getElementById("characterName");
-        const newOrderBubble = document.getElementById("orderBubble");
-        const newGameButtons = document.getElementById("gameButtons");
-        const newServeBtn = document.getElementById("serveBtn");
-        const newRejectBtn = document.getElementById("rejectBtn");
-        const newStreakText = document.getElementById("streak");
-
-        exitBtnRef = newExitBtn;
-        customerImageRef = newCustomerImage;
-        foodImageRef = newFoodImage;
-        characterNameRef = newCharacterName;
-        orderBubbleRef = newOrderBubble;
-        gameButtonsRef = newGameButtons;
-        serveBtnRef = newServeBtn;
-        rejectBtnRef = newRejectBtn;
-        streakTextRef = newStreakText;
+        exitBtnRef = document.getElementById("exitBtn");
+        customerImageRef = document.getElementById("customerImage");
+        foodImageRef = document.getElementById("foodImage");
+        characterNameRef = document.getElementById("characterName");
+        orderBubbleRef = document.getElementById("orderBubble");
+        gameButtonsRef = document.getElementById("gameButtons");
+        serveBtnRef = document.getElementById("serveBtn");
+        rejectBtnRef = document.getElementById("rejectBtn");
+        streakTextRef = document.getElementById("streak");
 
         exitBtnRef.onclick = function () {
             showTitleScreen();
@@ -443,8 +441,6 @@ window.onload = function () {
             if (wrong) {
                 streak = 0;
                 mistakes++;
-                updateScore();
-                serveFoodAnimation();
             } else {
                 score++;
                 streak++;
@@ -453,10 +449,10 @@ window.onload = function () {
                 if (streak > bestStreak) {
                     bestStreak = streak;
                 }
-
-                updateScore();
-                serveFoodAnimation();
             }
+
+            updateScore();
+            serveFoodAnimation();
         };
 
         rejectBtnRef.onclick = function () {
@@ -478,95 +474,6 @@ window.onload = function () {
             updateScore();
             checkProgressAfterChoice();
         };
-    }
-
-    let exitBtnRef = exitBtn;
-    let customerImageRef = customerImage;
-    let foodImageRef = foodImage;
-    let characterNameRef = characterName;
-    let orderBubbleRef = orderBubble;
-    let gameButtonsRef = gameButtons;
-    let serveBtnRef = serveBtn;
-    let rejectBtnRef = rejectBtn;
-    let streakTextRef = streakText;
-
-    function updateScore() {
-        streakTextRef.textContent =
-            "Shift: " + currentShift + " (" + shiftCorrect + "/" + getShiftGoal(currentShift) + ")" +
-            " | Score: " + score +
-            " | Streak: " + streak +
-            " | Mistakes: " + mistakes + "/3";
-    }
-
-    function startRound() {
-        orderBubbleRef.style.display = "none";
-        gameButtonsRef.style.display = "none";
-        foodImageRef.style.display = "none";
-        foodImageRef.classList.remove("serveFood");
-
-        const roundType = Math.floor(Math.random() * 4);
-
-        let chosenCustomer;
-        let chosenOrder;
-
-        currentCustomerIsImposter = false;
-        currentOrderIsFake = false;
-
-        if (roundType === 0) {
-            chosenCustomer = randomChoice(realCustomers);
-            chosenOrder = randomChoice(realOrders);
-        } else if (roundType === 1) {
-            chosenCustomer = randomChoice(fakeCustomers);
-            chosenOrder = randomChoice(realOrders);
-            currentCustomerIsImposter = true;
-        } else if (roundType === 2) {
-            chosenCustomer = randomChoice(realCustomers);
-            chosenOrder = randomChoice(fakeOrders);
-            currentOrderIsFake = true;
-        } else {
-            chosenCustomer = randomChoice(fakeCustomers);
-            chosenOrder = randomChoice(fakeOrders);
-            currentCustomerIsImposter = true;
-            currentOrderIsFake = true;
-        }
-
-        currentOrderName = chosenOrder;
-
-        characterNameRef.textContent = chosenCustomer.name;
-
-        customerImageRef.classList.remove("walkIn");
-        customerImageRef.src = "images/" + chosenCustomer.image;
-
-        void customerImageRef.offsetWidth;
-
-        customerImageRef.classList.add("walkIn");
-
-        setTimeout(function () {
-            orderBubbleRef.textContent = "I'd like " + chosenOrder + ".";
-            orderBubbleRef.style.display = "block";
-            gameButtonsRef.style.display = "block";
-        }, 1600);
-    }
-
-    function serveFoodAnimation() {
-        const imageFile = orderImageMap[currentOrderName];
-
-        if (!imageFile) {
-            checkProgressAfterChoice();
-            return;
-        }
-
-        foodImageRef.src = "images/" + imageFile;
-        foodImageRef.style.display = "block";
-
-        foodImageRef.classList.remove("serveFood");
-        void foodImageRef.offsetWidth;
-        foodImageRef.classList.add("serveFood");
-
-        setTimeout(function () {
-            foodImageRef.style.display = "none";
-            checkProgressAfterChoice();
-        }, 900);
     }
 
     function showDeathScreen() {
