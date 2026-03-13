@@ -108,6 +108,26 @@ align-items:center;
 position:relative;
 }
 
+/* EXIT BUTTON */
+
+#exitBtn{
+position:absolute;
+top:20px;
+right:20px;
+font-size:18px;
+padding:10px 18px;
+background:gold;
+color:black;
+border:none;
+border-radius:8px;
+cursor:pointer;
+z-index:1000;
+}
+
+#exitBtn:hover{
+background:#ffd700;
+}
+
 /* GAME AREA */
 
 #gameArea{
@@ -136,6 +156,32 @@ animation:walkIn 1.6s forwards;
 @keyframes walkIn{
 0%{
 left:-500px;
+}
+100%{
+left:50%;
+transform:translateX(-50%);
+}
+}
+
+/* FOOD */
+
+#foodImage{
+position:absolute;
+bottom:60px;
+left:-300px;
+width:180px;
+display:none;
+pointer-events:none;
+z-index:4;
+}
+
+.serveFood{
+animation:serveFood 0.8s forwards;
+}
+
+@keyframes serveFood{
+0%{
+left:-300px;
 }
 100%{
 left:50%;
@@ -259,38 +305,4 @@ margin-bottom:4px;
 
 .hidden{
 display:none !important;
-}
-
-#foodImage{
-
-position:absolute;
-
-bottom:60px;
-left:-300px;
-
-width:180px;
-
-display:none;
-
-pointer-events:none;
-
-}
-
-.serveFood{
-
-animation:serveFood 0.8s forwards;
-
-}
-
-@keyframes serveFood{
-
-0%{
-left:-300px;
-}
-
-100%{
-left:50%;
-transform:translateX(-50%);
-}
-
 }
