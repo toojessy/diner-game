@@ -2,7 +2,7 @@
 
 **Who Ordered This?!** is a browser-based diner game where players must figure out who is real, who is an imposter, and whether the order is actually on the menu.
 
-file:///C:/Users/jnkam/OneDrive/Documents/diner-game/index.html 
+[Who Ordered This?!](https://toojessy.github.io/diner-game/)
 
 Players must:
 - **Serve** real customers with valid menu items
